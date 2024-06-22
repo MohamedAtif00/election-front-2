@@ -1,0 +1,95 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#page-top">Election Hub</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse  gap-2" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0 d-flex flex-row justify-content-between     ">
+                <!-- <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li> -->
+                <li class="nav-item"><a class="nav-link" [routerLink]="['candidates']" *ngIf="authServ.isAuthenticated()">Candidates</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li> -->
+                <li class="nav-item dropdown" *ngIf="!authServ.isAuthenticated()" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" ngbDropdownToggle>
+                        Login
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"  ngbDropdownMenu>
+                        <a class="dropdown-item"  (click)="open(voterLoginModal)" ngbDropdownItem>Voter Login</a>
+                        <a class="dropdown-item" (click)="open(candidateLoginModal)" ngbDropdownItem>Candidate Login</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" *ngIf="authServ.isAuthenticated()" >
+                  <a class="btn btn-danger" (click)="authServ.logout()" role="button" >
+                      LogOut
+                  </a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Voter Login Modal -->
+<ng-template #voterLoginModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Voter Login</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="voterLoginForm" (ngSubmit)="onSubmitVoter()">
+        <div class="form-group mb-3">
+          <label for="voter-email">Email</label>
+          <input type="email" id="voter-email" class="form-control" formControlName="email" placeholder="Enter your email">
+          <div *ngIf="voterLoginForm.controls['email'].invalid && (voterLoginForm.controls['email'].dirty || voterLoginForm.controls['email'].touched)" class="text-danger">
+            <div *ngIf="voterLoginForm.controls['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="voterLoginForm.controls['email'].errors?.['email']">Invalid email address</div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="voter-password">Password</label>
+          <input type="password" id="voter-password" class="form-control" formControlName="password" placeholder="Enter your password">
+          <div *ngIf="voterLoginForm.controls['password'].invalid && (voterLoginForm.controls['password'].dirty || voterLoginForm.controls['password'].touched)" class="text-danger">
+            Password is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="voterLoginForm.invalid">Login</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+  
+  <!-- Candidate Login Modal -->
+  <ng-template #candidateLoginModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Candidate Login</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="candidateLoginForm" (ngSubmit)="onSubmitCandidate()">
+        <div class="form-group mb-3">
+          <label for="candidate-email">Email</label>
+          <input type="email" id="candidate-email" class="form-control" formControlName="email" placeholder="Enter your email">
+          <div *ngIf="candidateLoginForm.controls['email'].invalid && (candidateLoginForm.controls['email'].dirty || candidateLoginForm.controls['email'].touched)" class="text-danger">
+            <div *ngIf="candidateLoginForm.controls['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="candidateLoginForm.controls['email'].errors?.['email']">Invalid email address</div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="candidate-password">Password</label>
+          <input type="password" id="candidate-password" class="form-control" formControlName="password" placeholder="Enter your password">
+          <div *ngIf="candidateLoginForm.controls['password'].invalid && (candidateLoginForm.controls['password'].dirty || candidateLoginForm.controls['password'].touched)" class="text-danger">
+            Password is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="candidateLoginForm.invalid">Login</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>

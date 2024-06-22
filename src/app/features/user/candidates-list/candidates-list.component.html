@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <div class="row">
+      <div *ngFor="let candidate of candidates" class="col-md-4" style="width: 400px;">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fs-2 align-self-center">{{ candidate.name }}</h5>
+            <div class="d-flex gap-1" >
+                <p class="card-text d-inline">Gender: {{ candidate.gender }}</p>
+                <button class="btn btn-primary w-25 float-end" (click)="vote(candidate)">Vote</button>
+            </div>
+            <div *ngIf="candidate.personalImageUrl" class="mb-3">
+              <h6>Personal Image</h6>
+              <img [src]="candidate.personalImageUrl" alt="Personal Image" class="img-fluid rounded"/>
+            </div>
+            <!-- <div *ngIf="candidate.nationalIdImageUrl">
+              <h6>National ID Image</h6>
+              <img [src]="candidate.nationalIdImageUrl" alt="National ID Image" class="img-fluid rounded"/>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

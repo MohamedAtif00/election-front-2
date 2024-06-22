@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div [formGroup]="politicalPartyForm" *ngIf="politicalParties().length != 0" data-aos="fade-up">
+        <div class="form-group mb-3">
+          <label for="category1" class="mb-3">Which Political Party do you belong to?</label>
+          <select id="category1" class="form-control" formControlName="politicalParty" (change)="onPoliticalPartSelect($event)">
+            <option value=""  selected>Please select a category</option>
+            <option *ngFor="let item of politicalParties()" [value]="item.id">{{item.name}}</option>
+          </select>
+          <div *ngIf="politicalPartyForm.controls['politicalParty'].invalid && (politicalPartyForm.controls['politicalParty'].dirty || politicalPartyForm.controls['politicalParty'].touched)" class="text-danger">
+            Political Party is required
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+  

@@ -1,0 +1,19 @@
+.candidate-card {
+    border: 1px solid #ccc;
+    width: 30%;
+    padding: 16px;
+    margin: 16px 16px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 12px #aaa;
+  }
+  
+  .candidate-card h3 {
+    margin: 0 0 8px 0;
+  }
+  
+  .candidate-card .image {
+    max-width: 100%;
+    height: auto;
+    margin: 8px 0;
+  }
+  

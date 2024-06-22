@@ -1,0 +1,15 @@
+<div class="" style="height: 50px;"></div>
+<div class="container d-flex flex-column align-items-center justify-content-center mt-5" style="height: 300px;">
+  <button class="btn btn-primary mb-3" (click)="checkPermission()">Check Permission</button>
+  
+  <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <div *ngIf="camData && !capturedImage" class="text-center">
+      <webcam [trigger]="$trigger" (imageCapture)="capture($event)"></webcam>
+      <button class="btn btn-success mt-3" (click)="captureImage()">Capture Image</button>
+    </div>
+    
+    <div *ngIf="capturedImage" class="mt-3" style="height: 300px;">
+      <img [src]="capturedImage" class="img-fluid rounded shadow">
+    </div>
+  </div>
+</div>

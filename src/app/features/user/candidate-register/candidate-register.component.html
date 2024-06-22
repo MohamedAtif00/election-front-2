@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h2 class="text-center mt-5">Candidate Registration</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter your name">
+          <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)" class="text-danger">
+            Name is required
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email">
+          <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="text-danger">
+            <div *ngIf="registerForm.controls['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="registerForm.controls['email'].errors?.['email']">Invalid email address</div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password">
+          <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)" class="text-danger">
+            Password is required
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="nationalidimage">National ID Image</label>
+          <input type="file" id="nationalidimage" (change)="onNationalIdImageSelected($event)" class="form-control-file" accept="image/*" formControlName="nationalidimage">
+          <div *ngIf="registerForm.controls['nationalidimage'].invalid && (registerForm.controls['nationalidimage'].dirty || registerForm.controls['nationalidimage'].touched)" class="text-danger">
+            National ID Image is required
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="personalimage">Personal Image</label>
+          <input type="file" id="personalimage" (change)="onPersonalImageSelected($event)" class="form-control-file" accept="image/*" formControlName="personalimage">
+          <div *ngIf="registerForm.controls['personalimage'].invalid && (registerForm.controls['personalimage'].dirty || registerForm.controls['personalimage'].touched)" class="text-danger">
+            Personal Image is required
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="gender">Gender</label>
+          <select id="gender" class="form-control" formControlName="gender">
+            <option value="" selected>Please select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          <div *ngIf="registerForm.controls['gender'].invalid && (registerForm.controls['gender'].dirty || registerForm.controls['gender'].touched)" class="text-danger">
+            Gender is required
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+      </form>
+      <button class="btn btn-secondary mt-3" (click)="goBack()">Back to Main Page</button>
+    </div>
+  </div>
+</div>
