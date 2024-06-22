@@ -35,24 +35,24 @@ export class CandidatesListComponent implements OnInit{
 
   LoadCandidates()
   {
-    if(this.candidateServ.ids.length != 0)
-      {
-        this.candidateServ.GetCandidates(this.candidateServ.ids).subscribe(data=>{
-          if(data)
-          this.candidates = data
-          console.log(this.candidates);
-          this.candidates.forEach(e =>{
-            this.loadImage(e.id,true,url => e.personalImageUrl = url)
-            })
-          this.candidateServ.ids = []
+    // if(this.candidateServ.ids.length != 0)
+    //   {
+    //     this.candidateServ.GetCandidates(this.candidateServ.ids).subscribe(data=>{
+    //       if(data)
+    //       this.candidates = data
+    //       console.log(this.candidates);
+    //       this.candidates.forEach(e =>{
+    //         this.loadImage(e.id,true,url => e.personalImageUrl = url)
+    //         })
+    //       this.candidateServ.ids = []
     
-        },error =>{
-          console.log(error);
+    //     },error =>{
+    //       console.log(error);
           
-        })
+    //     })
 
-      }else
-      {
+    //   }else
+    //   {
           this.candidateServ.GetAllCandidates().subscribe(data=>{
             console.log(data);
             if(data)
@@ -64,7 +64,7 @@ export class CandidatesListComponent implements OnInit{
           },error=>{
 
           })
-      }
+      // }
   }
 
 

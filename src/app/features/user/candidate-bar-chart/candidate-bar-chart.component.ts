@@ -17,15 +17,8 @@ export class CandidateBarChartComponent   {
   data: any;
   options: any;
 
-  candidates:candidateChart[]= [
-    { name: 'Candidate A', votes: 65 },
-    { name: 'Candidate B', votes: 59 },
-    { name: 'Candidate C', votes: 80 },
-    { name: 'Candidate D', votes: 81 },
-    { name: 'Candidate E', votes: 56 },
-    { name: 'Candidate F', votes: 55 },
-    { name: 'Candidate G', votes: 40 }
-  ];
+  candidates:candidateChart[]= [];
+  
 
 
   constructor(private candidateServ:CandidateService){}
@@ -49,7 +42,7 @@ export class CandidateBarChartComponent   {
       labels: this.candidates.map(candidate => candidate.name),
       datasets: [
         {
-          label: 'Votes',
+          label: 'Statistics',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           data: this.candidates.map(candidate => candidate.votes)
